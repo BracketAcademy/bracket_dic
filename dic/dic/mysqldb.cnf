@@ -1,0 +1,4 @@
+database = 'django_mydic'
+user = 'backend'
+password = '27013004'
+default-character-set = utf8
