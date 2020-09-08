@@ -7,6 +7,7 @@ class word(models.Model):
 
     word_trans = models.CharField(max_length=200)
     word_date = models.DateTimeField("date added")
+
     def recent(self):
         b=timezone.now()
         a=self.word_date
@@ -14,10 +15,12 @@ class word(models.Model):
         if c.days<1:
             h=c.seconds//3600
             if h<=12:
-                True
+                return True
             else:
-                False
+                return False
         else:
-            False
+            return False
         del a,b,c,h
 
+    def __str__(self):
+        return self.word_text
