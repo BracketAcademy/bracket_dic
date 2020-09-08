@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime as D
+from django.utils import timezone
 # Create your models here.
 class word(models.Model):
     word_text = models.CharField(max_length=50)
@@ -8,7 +8,7 @@ class word(models.Model):
     word_trans = models.CharField(max_length=200)
     word_date = models.DateTimeField("date added")
     def recent(self):
-        b=D.now()
+        b=timezone.now()
         a=self.word_date
         c=a-b
         if c.days<1:
