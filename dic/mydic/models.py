@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from datetime import timedelta
 # Create your models here.
 class word(models.Model):
     word_text = models.CharField(max_length=50)
@@ -9,6 +10,8 @@ class word(models.Model):
     word_date = models.DateTimeField("date added")
 
     def recent(self):
+        return self.word_date <= timezone.now() + timedelta(hours=12)
+        '''
         b=timezone.now()
         a=self.word_date
         c=b-a
@@ -20,7 +23,9 @@ class word(models.Model):
                 return False
         else:
             return False
-        del a,b,c,h
+        del a,b,c,
+        '''
+        
 
     def __str__(self):
         return self.word_text
