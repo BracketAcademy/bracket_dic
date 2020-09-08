@@ -10,7 +10,7 @@ class word(models.Model):
     word_date = models.DateTimeField("date added")
 
     def recent(self):
-        return self.word_date <= timezone.now() + timedelta(hours=12)
+        return timezone.now() - timedelta(hours=12) <= self.word_date <= timezone.now()
         '''
         b=timezone.now()
         a=self.word_date
