@@ -11,7 +11,7 @@ class word(models.Model):
     def recent(self):
         b=timezone.now()
         a=self.word_date
-        c=a-b
+        c=b-a
         if c.days<1:
             h=c.seconds//3600
             if h<=12:
