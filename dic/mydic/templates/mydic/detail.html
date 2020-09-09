@@ -4,13 +4,35 @@
     <meta charset='utf-8'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        h1 {
+            text-align: center;
+            padding-left: 30px;
+        }
+        ul {
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            list-style-type: none;
+        }
+        li {
+            width: 100%;
+            height: 30px;
+            border-top: solid 1px rgb(112, 112, 112);
+            text-align: center;
+            padding: 11px 0;
+        }
+        li:hover{
+            border-top: solid 2px rgb(37, 37, 37);
+        }
+    </style>
 </head>
 <body>
     <h1>{{ w.word_text }}</h1>
-    <ul>
-        <li>Type: {{ w.word_type }}</li>
-        <li>Translation: {{ w.word_trans }}</li>
-        <li>date added: {{ w.word_date.year }}/{{ w.word_date.day }}/{{ w.word_date.month }}</li>
+    <ul class="prop">
+        <li>{{ w.word_type }}</li>
+        <li>{{ w.word_trans }}</li>
+        <li>{{ w.word_date.year }}/{{ w.word_date.day }}/{{ w.word_date.month }}</li>
     </ul>
 </body>
 </html>

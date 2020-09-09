@@ -4,9 +4,41 @@
     <meta charset='utf-8'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        h1 {
+            text-align: center;
+            padding-left: 50px;
+        }
+        ul {
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            list-style-type: none;
+        }
+        li {
+            width: 100%;
+            height: 50px;
+            border-top: solid 1px rgb(112, 112, 112);
+        }
+        li a {
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: black;
+            display: table;
+            text-align: center;
+            padding: 15px 0;
+        }
+        li:hover{
+            border-top: solid 2px rgb(37, 37, 37);
+        }
+        body {
+            direction: ltr !important;
+        }
+    </style>
 </head>
 <body>
-    <h1>All the words are here!</h1>   
+    <h1>Words are HERE!</h1>   
     <ul>
         {% for w in word %}
         <li><a href="{{ w.id }}/detail">{{ w.word_text }}</a></li>
