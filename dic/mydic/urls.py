@@ -3,4 +3,5 @@ from mydic import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    
 ]
