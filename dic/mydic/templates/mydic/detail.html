@@ -21,6 +21,7 @@
             border-top: solid 1px rgb(112, 112, 112);
             text-align: center;
             padding: 11px 0;
+            text-transform:capitalize;
         }
         li:hover{
             border-top: solid 2px rgb(37, 37, 37);
@@ -28,8 +29,8 @@
     </style>
 </head>
 <body>
-    <h1>{{ w.word_text }}</h1>
-    <ul class="prop">
+    <h1 style = "text-transform:capitalize;">{{ w.word_text }}</h1>
+    <ul>
         <li>{{ w.word_type }}</li>
         <li>{{ w.word_trans }}</li>
         <li>{{ w.word_date.year }}/{{ w.word_date.day }}/{{ w.word_date.month }}</li>
