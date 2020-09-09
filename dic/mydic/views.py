@@ -6,3 +6,5 @@ from .models import *
 def index(req):
 
     return render(req, 'mydic/index.html',)
+def detail(req):
+    return render(req, 'midic/detail.html')
