@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From</title>
+</head>
+<body>
+    <form action="{% url 'mydic:submit' %}">
+        <label for="word">Word: </label><br>
+        <input type="text" id="word_text" name="nword" value=""><br>
+        <label for="type">Type: </label><br>
+        <input type="text" id="word_type" name="ntype" value=""><br>
+        <label for="trans">Translation: </label><br>
+        <input type="text" id="word_trans" name="ntrans" value=""><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

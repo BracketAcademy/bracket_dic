@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <title>Page Title</title>
+    <title>Index</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <style>
         h1 {
@@ -41,7 +41,7 @@
     <h1>Words are HERE!</h1>   
     <ul>
         {% for w in word %}
-        <li><a href="{% url 'midic:detail' w.id %}" style = "text-transform:capitalize;">{{ w.word_text }}</a></li>
+        <li><a href="{% url 'mydic:detail' w.id %}" style = "text-transform:capitalize;">{{ w.word_text }}</a></li>
         {% endfor %}
     </ul>
 </body>
