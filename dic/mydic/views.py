@@ -18,10 +18,11 @@ def form(req):
     return render(req, 'mydic/form.html')
 
 def submit(req):
-    nword = req.POST('nword')
-    ntype = req.POST('ntype')
-    ntrans = req.POST('ntrans')
+    nword = req.GET['nword']
+    ntype = req.GET['ntype']
+    ntrans = req.GET['ntrans']
     ndate = timezone.now()
+        
 
     w = word(word_text=nword, word_type=ntype, word_trans=ntrans, word_date=ndate)
     w.save()

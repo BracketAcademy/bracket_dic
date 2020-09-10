@@ -7,6 +7,7 @@
 </head>
 <body>
     <form action="{% url 'mydic:submit' %}" method="POST">
+        {% csrf_token %}
         <label for="word">Word: </label><br>
         <input type="text" id="word_text" name="nword" value=""><br>
         <label for="type">Type: </label><br>
