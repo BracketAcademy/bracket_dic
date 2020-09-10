@@ -6,7 +6,7 @@
     <title>From</title>
 </head>
 <body>
-    <form action="{% url 'mydic:submit' %}">
+    <form action="{% url 'mydic:submit' %}" method="POST">
         <label for="word">Word: </label><br>
         <input type="text" id="word_text" name="nword" value=""><br>
         <label for="type">Type: </label><br>
