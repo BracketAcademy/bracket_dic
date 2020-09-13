@@ -14,6 +14,7 @@
             margin-left: auto;
             margin-right: auto;
             list-style-type: none;
+            margin-bottom: 0;
         }
         li {
             width: 100%;
@@ -25,9 +26,15 @@
             height: 100%;
             text-decoration: none;
             color: black;
-            display: table;
+            display: table-cell;
             text-align: center;
             padding: 15px 0;
+        }
+        .wordn {
+            display: table-cell;
+            text-align: left;
+            height: 100%;
+            width: 10px;
         }
         li:hover{
             border-top: solid 2px rgb(37, 37, 37);
@@ -35,15 +42,39 @@
         body {
             direction: ltr !important;
         }
+        div {
+            margin: 0 auto;
+            text-align: center;
+            display: table;
+            padding-left: 45px;
+            width: 500px;
+            height: 40px;
+        }
+        #form {
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            display: table;
+            text-align: center;
+            padding-top: 8px;
+            border: solid 1px rgb(150, 150, 150);
+            color:rgb(37, 37, 37);
+        }
+        #form:hover {
+            background-color: rgb(37, 37, 37);
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <a href="{% url 'mydic:form' %}">Add word!</a>
     <h1>Words are HERE!</h1>   
     <ul>
         {% for w in word %}
-        <li><a href="{% url 'mydic:detail' w.id %}" style = "text-transform:capitalize;">{{ w.word_text }}</a></li>
+        <li><span class="wordn">{{ forloop.counter }}</span><a href="{% url 'mydic:detail' w.id %}" style = "text-transform:capitalize;">{{ w.word_text }}</span></a></li>
         {% endfor %}
     </ul>
+    <div>
+    <a id='form' href="{% url 'mydic:form' %}">Add word!</a>
+    </div>
 </body>
 </html>

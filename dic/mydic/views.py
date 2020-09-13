@@ -22,13 +22,11 @@ def submit(req):
         nw = req.POST['nword']
         ntype = req.POST['ntype']
         ntrans = req.POST['ntrans']
-    except:
+    except (MultiValueDictKeyError):
         nw = req.GET['nword']
         ntype = req.GET['ntype']
         ntrans = req.GET['ntrans']
-    
     ndate = timezone.now()
-        
 
     w = word(word_text=nw, word_type=ntype, word_trans=ntrans, word_date=ndate)
     w.save()
