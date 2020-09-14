@@ -7,7 +7,24 @@
     <style>
         h1 {
             text-align: center;
-            padding-left: 50px;
+        }
+        #search {
+            display: block;
+            margin: 0 auto;
+            width: 495px;
+            height: 35px;
+        }
+        #searchbar {
+            float: right;
+            width: 89%;
+            height: 85%;
+            margin: 0 !important;
+            font-size: 20px;
+        }
+        #searchsub {
+            float: left;
+            width: 9%;
+            height: 100%;
         }
         ul {
             width: 500px;
@@ -15,6 +32,7 @@
             margin-right: auto;
             list-style-type: none;
             margin-bottom: 0;
+            padding: 0;
         }
         li {
             width: 100%;
@@ -42,11 +60,10 @@
         body {
             direction: ltr !important;
         }
-        div {
+        #form-div {
             margin: 0 auto;
             text-align: center;
             display: table;
-            padding-left: 45px;
             width: 500px;
             height: 40px;
         }
@@ -67,13 +84,18 @@
     </style>
 </head>
 <body>
-    <h1>Words are HERE!</h1>   
+    <h1>Words are HERE!</h1>
+    <form id="search" action="{% url 'mydic:submit' %}" method="POST">
+        {% csrf_token %}
+        <input type="button" id="searchsub" value="s">
+        <input type="text" id="searchbar" name="searchtxt" value="">
+    </form>
     <ul>
         {% for w in word %}
         <li><span class="wordn">{{ forloop.counter }}</span><a href="{% url 'mydic:detail' w.id %}" style = "text-transform:capitalize;">{{ w.word_text }}</span></a></li>
         {% endfor %}
     </ul>
-    <div>
+    <div id="form-div">
     <a id='form' href="{% url 'mydic:form' %}">Add word!</a>
     </div>
 </body>
