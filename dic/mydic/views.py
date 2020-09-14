@@ -33,3 +33,11 @@ def submit(req):
     w.save()
 
     return HttpResponseRedirect(reverse('mydic:index'))
+
+def search(req):
+    try:
+        searchtxt = req.POST['searchtxt']
+    except MultiValueDictKeyError:
+        searchtxt = req.GET['searchtxt']
+
+    return render(req, 'mydic/search.html', context={ 'searchtxt':searchtxt })
