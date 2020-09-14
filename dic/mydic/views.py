@@ -3,6 +3,7 @@ from .models import *
 from django.utils import timezone
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils.datastructures import MultiValueDictKeyError
 
 # Create your views here.
 
@@ -22,7 +23,7 @@ def submit(req):
         nw = req.POST['nword']
         ntype = req.POST['ntype']
         ntrans = req.POST['ntrans']
-    except (MultiValueDictKeyError):
+    except MultiValueDictKeyError:
         nw = req.GET['nword']
         ntype = req.GET['ntype']
         ntrans = req.GET['ntrans']
