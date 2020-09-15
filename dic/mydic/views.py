@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.utils import timezone
 from django.http import HttpResponseRedirect, HttpResponse
@@ -16,7 +16,7 @@ def detail(req, w_id):
     return render(req, 'mydic/detail.html', {'w':w})
 
 def form(req, wordex=False):
-    return render(req, 'mydic/form.html', context={'wordex': wordex})
+    return render(req, 'mydic/form.html', {'wordex':wordex})
 
 def submit(req):
     try:
@@ -34,8 +34,9 @@ def submit(req):
     for i in word.objects.all():
         word_text.append(i.word_text)
         word_type.append(i.word_type)
-    if w.word_text in word_text and w.word_type in word_type:
-        return HttpResponseRedirect(reverse('mydic:form', args=[True,]))
+    if (w.word_text in word_text) and (w.word_type in word_type):
+        #return redirect('mydic:form', wordex=True)
+        return render(req, 'mydic/form.html', {'wordex':True})
     else:
         w.save()
         return HttpResponseRedirect(reverse('mydic:index'))
