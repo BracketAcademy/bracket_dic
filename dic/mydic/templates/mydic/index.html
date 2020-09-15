@@ -92,11 +92,11 @@
     </form>
     <ul>
         {% for w in word %}
-        <li><span class="wordn">{{ forloop.counter }}</span><a href="{% url 'mydic:detail' w.id %}" style = "text-transform:capitalize;">{{ w.word_text }}</span></a></li>
+        <li><span class="wordn">{{ forloop.counter }}</span><a href="{% url 'mydic:detail' w.id %}" style = "text-transform:capitalize;">{{ w.word_text }} <sub style="text-transform: none; font-size: 10px;">{{ w.word_type }}</sub></span></a></li>
         {% endfor %}
     </ul>
     <div id="form-div">
-    <a id='form' href="{% url 'mydic:form' %}">Add word!</a>
+        <a id='form' href="{% url 'mydic:form' %}">Add word!</a>
     </div>
 </body>
 </html>

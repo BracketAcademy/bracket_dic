@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
 from django.utils import timezone
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -15,24 +15,30 @@ def detail(req, w_id):
     w = get_object_or_404(word, id=w_id)
     return render(req, 'mydic/detail.html', {'w':w})
 
-def form(req):
-    return render(req, 'mydic/form.html')
+def form(req, wordex=False):
+    return render(req, 'mydic/form.html', context={'wordex': wordex})
 
 def submit(req):
     try:
-        nw = req.POST['nword']
-        ntype = req.POST['ntype']
-        ntrans = req.POST['ntrans']
+        nw = req.POST['nword'].lower()
+        ntype = req.POST['ntype'].lower()
+        ntrans = req.POST['ntrans'].lower()
     except MultiValueDictKeyError:
-        nw = req.GET['nword']
-        ntype = req.GET['ntype']
-        ntrans = req.GET['ntrans']
+        nw = req.GET['nword'].lower()
+        ntype = req.GET['ntype'].lower()
+        ntrans = req.GET['ntrans'].lower()
     ndate = timezone.now()
 
     w = word(word_text=nw, word_type=ntype, word_trans=ntrans, word_date=ndate)
-    w.save()
-
-    return HttpResponseRedirect(reverse('mydic:index'))
+    word_text = word_type = list()
+    for i in word.objects.all():
+        word_text.append(i.word_text)
+        word_type.append(i.word_type)
+    if w.word_text in word_text and w.word_type in word_type:
+        return HttpResponseRedirect(reverse('mydic:form', args=[True,]))
+    else:
+        w.save()
+        return HttpResponseRedirect(reverse('mydic:index'))
 
 def search(req):
     try:

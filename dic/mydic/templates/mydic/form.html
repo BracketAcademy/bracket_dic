@@ -40,6 +40,9 @@
         <input type="text" id="word_trans" name="ntrans" value=""><br><br>
         <input id="sub" type="submit" value="Submit">
     </form>
+    {% if wordex %}
+    <p style="color: red;">The word you entered has been already registered!</p>
+    {% endif %}
     </div>
 </body>
 </html>
