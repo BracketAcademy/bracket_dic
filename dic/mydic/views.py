@@ -15,7 +15,7 @@ def detail(req, w_id):
     w = get_object_or_404(word, id=w_id)
     return render(req, 'mydic/detail.html', {'w':w})
 
-def form(req, wordex=False):
+def form(req, wordex=''):
     return render(req, 'mydic/form.html', {'wordex':wordex})
 
 def submit(req):
@@ -30,17 +30,30 @@ def submit(req):
     ndate = timezone.now()
 
     w = word(word_text=nw, word_type=ntype, word_trans=ntrans, word_date=ndate)
-    kalame = []
+
+    aword = list()
     for i in word.objects.all():
-        kalame.append(i.word_text)
-        kalame.append(i.word_type)
-    for i in range(0,len(kalame),2):
-        if (w.word_text in kalame[i]) and (w.word_type in kalame[i+1]):
-        #return redirect('mydic:form', wordex=True)
-            return render(req, 'mydic/form.html', {'wordex':True})
+        aword.append({
+            'text': i.word_text,
+            'type': i.word_type,
+            'trans': i.word_trans
+        })
+    for i in aword:
+        if w.word_text in i['text']:
+            if w.word_type in i['type']:
+                if w.word_trans in i['trans']:
+                    return render(req, 'mydic/form.html', {'wordex':'the word is registered!'})
+                else:
+                    #merge
+                    return render(req, 'mydic/form.html', {'wordex':'merge trans'})
+            else:
+                #merge tpye
+                return render(req, 'mydic/form.html', {'wordex':'merge type'})
         else:
-            w.save()
-            return HttpResponseRedirect(reverse('mydic:index'))
+            continue
+        
+    w.save()
+    return HttpResponseRedirect(reverse('mydic:index'))
 
 def search(req):
     try:
