@@ -30,16 +30,17 @@ def submit(req):
     ndate = timezone.now()
 
     w = word(word_text=nw, word_type=ntype, word_trans=ntrans, word_date=ndate)
-    word_text = word_type = list()
+    kalame = []
     for i in word.objects.all():
-        word_text.append(i.word_text)
-        word_type.append(i.word_type)
-    if (w.word_text in word_text) and (w.word_type in word_type):
+        kalame.append(i.word_text)
+        kalame.append(i.word_type)
+    for i in range(0,len(kalame),2):
+        if (w.word_text in kalame[i]) and (w.word_type in kalame[i+1]):
         #return redirect('mydic:form', wordex=True)
-        return render(req, 'mydic/form.html', {'wordex':True})
-    else:
-        w.save()
-        return HttpResponseRedirect(reverse('mydic:index'))
+            return render(req, 'mydic/form.html', {'wordex':True})
+        else:
+            w.save()
+            return HttpResponseRedirect(reverse('mydic:index'))
 
 def search(req):
     try:
