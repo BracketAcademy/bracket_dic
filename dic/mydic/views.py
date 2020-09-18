@@ -39,12 +39,12 @@ def submit(req):
             'trans': i.word_trans
         })
     for i in aword:
-        if w.word_text in i['text']:
-            if w.word_type in i['type']:
-                if w.word_trans in i['trans']:
+        if w.word_text == i['text']:
+            if w.word_type == i['type']:
+                if w.word_trans == i['trans']:
                     return render(req, 'mydic/form.html', {'wordex':'the word is registered!'})
                 else:
-                    #merge
+                    
                     return render(req, 'mydic/form.html', {'wordex':'merge trans'})
             else:
                 #merge tpye
