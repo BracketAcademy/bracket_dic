@@ -78,11 +78,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_mydic',
-        'USER': 'backend',
-        'PASSWORD': '27013004',
+        'USER': 'armanahdi',
+        'PASSWORD': 'MohammadHadi123',
         'HOST': '',
         'PORT': '',
-        'OPTIONS': {
+        'OPIONS': {
             'init_command': "SET sql_mode = 'STRICT_TRANS_TABLES'",
         }
     }
