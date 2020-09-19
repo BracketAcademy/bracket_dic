@@ -7,13 +7,32 @@
     <style>
         h1 {
             text-align: center;
-            padding-left: 50px;
+        }
+        #search {
+            display: block;
+            margin: 0 auto;
+            width: 495px;
+            height: 35px;
+        }
+        #searchbar {
+            float: right;
+            width: 89%;
+            height: 85%;
+            margin: 0 !important;
+            font-size: 20px;
+        }
+        #searchsub {
+            float: left;
+            width: 9%;
+            height: 100%;
         }
         ul {
             width: 500px;
             margin-left: auto;
             margin-right: auto;
             list-style-type: none;
+            margin-bottom: 0;
+            padding: 0;
         }
         li {
             width: 100%;
@@ -25,9 +44,15 @@
             height: 100%;
             text-decoration: none;
             color: black;
-            display: table;
+            display: table-cell;
             text-align: center;
             padding: 15px 0;
+        }
+        .wordn {
+            display: table-cell;
+            text-align: left;
+            height: 100%;
+            width: 10px;
         }
         li:hover{
             border-top: solid 2px rgb(37, 37, 37);
@@ -35,15 +60,43 @@
         body {
             direction: ltr !important;
         }
+        #form-div {
+            margin: 0 auto;
+            text-align: center;
+            display: table;
+            width: 500px;
+            height: 40px;
+        }
+        #form {
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            display: table;
+            text-align: center;
+            padding-top: 8px;
+            border: solid 1px rgb(150, 150, 150);
+            color:rgb(37, 37, 37);
+        }
+        #form:hover {
+            background-color: rgb(37, 37, 37);
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <a href="{% url 'mydic:form' %}">Add word!</a>
-    <h1>Words are HERE!</h1>   
+    <h1>Words are HERE!</h1>
+    <form id="search" action="{% url 'mydic:search' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" id="searchsub" value="s">
+        <input type="text" id="searchbar" name="searchtxt" value="">
+    </form>
     <ul>
         {% for w in word %}
-        <li><a href="{% url 'mydic:detail' w.id %}" style = "text-transform:capitalize;">{{ w.word_text }}</a></li>
+        <li><span class="wordn">{{ forloop.counter }}</span><a href="{% url 'mydic:detail' w.id %}" style = "text-transform:capitalize;">{{ w.word_text }} <sub style="text-transform: none; font-size: 10px;">{{ w.word_type }}</sub></span></a></li>
         {% endfor %}
     </ul>
+    <div id="form-div">
+        <a id='form' href="{% url 'mydic:form' %}">Add word!</a>
+    </div>
 </body>
 </html>
