@@ -62,3 +62,7 @@ def search(req):
         searchtxt = req.GET['searchtxt']
 
     return render(req, 'mydic/search.html', context={ 'searchtxt':searchtxt })
+
+def signup(req):
+
+    return render(req, 'mydic/signup.html')

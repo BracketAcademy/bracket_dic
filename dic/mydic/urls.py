@@ -7,4 +7,5 @@ urlpatterns = [
     path('form', views.form, name="form"),
     path('submit', views.submit, name="submit"),
     path('search', views.search, name='search'),
+    path('signup', views.signup, name='signup')
 ]
