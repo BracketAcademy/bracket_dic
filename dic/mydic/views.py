@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.utils import timezone
-from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
@@ -53,7 +53,7 @@ def submit(req):
             continue
         
     w.save()
-    return HttpResponseRedirect(reverse('mydic:index'))
+    return redirect('mydic:index')
 
 def search(req):
     try:
@@ -65,4 +65,4 @@ def search(req):
 
 def signup(req):
 
-    return render(req, 'mydic/signup.html')
+    return render(req, 'mydic/signup.html', {'form': UserCreationForm()})
