@@ -11,6 +11,9 @@ class word(models.Model):
 
     def recent(self):
         return timezone.now() - timedelta(hours=12) <= self.word_date <= timezone.now()
-        
+    recent.admin_order_field = 'word_date'
+    recent.boolean = True
+    recent.short_description = 'Published Recently?'
+
     def __str__(self):
         return self.word_text

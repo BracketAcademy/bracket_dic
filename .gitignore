@@ -2,5 +2,4 @@
 *.pot
 *.pyc
 __pycache__/
-/dic/dic/settings.py
 .vscode
