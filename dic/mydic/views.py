@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse
 from .models import *
 from django.utils import timezone
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -64,5 +66,13 @@ def search(req):
     return render(req, 'mydic/search.html', context={ 'searchtxt':searchtxt })
 
 def signup(req):
-
-    return render(req, 'mydic/signup.html', {'form': UserCreationForm()})
+    if req.method=='GET':
+        return render(req, 'mydic/signup.html', {'form': UserCreationForm()})
+    else:
+        if req.POST['password1']==req.POST['password2']:
+            newuser = User.objects.create_user(username=req.POST['username'], password=req.POST['password1'])
+            newuser.email = req.POST['email']
+            newuser.save()
+            return HttpResponse('User created succesfully!')
+        else:
+            return HttpResponse("SHIT, password doesn't match")
