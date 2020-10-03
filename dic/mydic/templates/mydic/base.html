@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>{% block title %}My Site Title{% endblock %}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'mydic/css/base.css' %}">
+    {% block style %}
+    {% endblock %}
+</head>
+<body>
+    {% block navbar %}
+    <ul class="rightnav">
+        <li style="float: left;"><a href="{% url 'mydic:index' %}">Bracket Dictionary</a></li>
+        <li><a href="{% url 'mydic:signup' %}">Signup</a></li>
+        <li><a href="#">Login</a></li>
+    </ul>
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

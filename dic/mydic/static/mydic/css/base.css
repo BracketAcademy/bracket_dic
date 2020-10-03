@@ -1,0 +1,22 @@
+.rightnav {
+    list-style-type: none;
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    margin: 0 !important;
+    padding: 0 400px;
+    background-color: rgb(37, 37, 37);
+}
+.rightnav li {
+    float: right;
+}
+.rightnav li a {
+    text-decoration: none;
+    text-align: center;
+    padding: 14px 16px;
+    display: block;
+    color: white;
+}
+.rightnav li a:hover {
+    background-color: black;
+}
