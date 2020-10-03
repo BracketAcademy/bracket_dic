@@ -73,6 +73,6 @@ def signup(req):
             newuser = User.objects.create_user(username=req.POST['username'], password=req.POST['password1'])
             newuser.email = req.POST['email']
             newuser.save()
-            return HttpResponse('User created succesfully!')
+            return redirect(req, 'mydic/index.html')
         else:
             return HttpResponse("SHIT, password doesn't match")
