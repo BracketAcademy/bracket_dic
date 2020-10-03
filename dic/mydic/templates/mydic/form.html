@@ -1,48 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
-    <style>
-        h1 {
-            display: table;
-            margin: 0 auto;
-            margin-top: 30px;
-            margin-bottom: 20px;
-        }
-        div {
-            width: 500px;
-            margin: 0px auto;
-        }
-        form {
-            margin: 0 auto;
-            display: table;
-        }
-        #sub {
-            margin-top: 10px;
-            width: 100%;
-            height: 30px;
-            font-size: larger;
-        }
-    </style>
-</head>
-<body>
-    <h1>Add word</h1>
-    <div>
-    <form action="{% url 'mydic:submit' %}" method="POST">
-        {% csrf_token %}
-        <label for="word">Word: </label><br>
-        <input type="text" id="word_text" name="nword" value=""><br><br>
-        <label for="type">Type: </label><br>
-        <input type="text" id="word_type" name="ntype" value=""><br><br>
-        <label for="trans">Translation: </label><br>
-        <input type="text" id="word_trans" name="ntrans" value=""><br><br>
-        <input id="sub" type="submit" value="Submit">
-    </form>
-    {% if wordex %}
-    <p style="color: red;">{{wordex}}</p>
-    {% endif %}
-    </div>
-</body>
-</html>
+{% extends 'mydic/base.html' %}
+{% block title %}Add Word{% endblock %}
+{% block style %}
+<style>
+    h1 {
+        display: table;
+        margin: 0 auto;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    div {
+        width: 500px;
+        margin: 0px auto;
+    }
+    form {
+        margin: 0 auto;
+        display: table;
+    }
+    #sub {
+        margin-top: 10px;
+        width: 100%;
+        height: 30px;
+        font-size: larger;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h1>Add word</h1>
+<div>
+<form action="{% url 'mydic:submit' %}" method="POST">
+    {% csrf_token %}
+    <label for="word">Word: </label><br>
+    <input type="text" id="word_text" name="nword" value=""><br><br>
+    <label for="type">Type: </label><br>
+    <input type="text" id="word_type" name="ntype" value=""><br><br>
+    <label for="trans">Translation: </label><br>
+    <input type="text" id="word_trans" name="ntrans" value=""><br><br>
+    <input id="sub" type="submit" value="Submit">
+</form>
+{% if wordex %}
+<p style="color: red;">{{wordex}}</p>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,50 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
-    <style>
-        h1 {
-            display: table;
-            margin: 0 auto;
-            margin-top: 30px;
-            margin-bottom: 20px;
-        }
-        div {
-            width: 500px;
-            margin: 0px auto;
-        }
-        form {
-            margin: 0 auto;
-            display: table;
-        }
-        #sub {
-            margin-top: 10px;
-            width: 100%;
-            height: 30px;
-            font-size: larger;
-        }
-    </style>
-</head>
-<body>
-    <h1>Signup</h1>
-    <div>
-    <form method="POST">
-        {% csrf_token %}
-        <label for="username">Username: </label><br>
-        <input type="text" id="username" name="username" value=""><br><br>
-        <label for="email">Email: </label><br>
-        <input type="text" id="Email" name="email" value=""><br><br>
-        <label for="Password">Password: </label><br>
-        <input type="password" id="password1" name="password1" value=""><br><br>
-        <label for="PasswordConfirm">Password Confirmation: </label><br>
-        <input type="password" id="password2" name="password2" value=""><br><br>
-        <input id="sub" type="submit" value="Submit">
-    </form>
-    {% if wordex %}
-    <p style="color: red;">{{wordex}}</p>
-    {% endif %}
-    </div>
-</body>
-</html>
+{% extends 'mydic/base.html' %}
+{% block title %}Signup{% endblock %}
+{% block style %}
+<style>
+    h1 {
+        display: table;
+        margin: 0 auto;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    div {
+        width: 500px;
+        margin: 0px auto;
+    }
+    form {
+        margin: 0 auto;
+        display: table;
+    }
+    #sub {
+        margin-top: 10px;
+        width: 100%;
+        height: 30px;
+        font-size: larger;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h1>Signup</h1>
+<div>
+<form method="POST">
+    {% csrf_token %}
+    <label for="username">Username: </label><br>
+    <input type="text" id="username" name="username" value=""><br><br>
+    <label for="email">Email: </label><br>
+    <input type="text" id="Email" name="email" value=""><br><br>
+    <label for="Password">Password: </label><br>
+    <input type="password" id="password1" name="password1" value=""><br><br>
+    <label for="PasswordConfirm">Password Confirmation: </label><br>
+    <input type="password" id="password2" name="password2" value=""><br><br>
+    <input id="sub" type="submit" value="Submit">
+</form>
+{% if wordex %}
+<p style="color: red;">{{wordex}}</p>
+{% endif %}
+</div>
+{% endblock %}
