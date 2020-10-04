@@ -53,10 +53,6 @@ h1 {
 .allwords li:hover{
     border-bottom: solid 2px rgb(37, 37, 37);
 }
-body {
-    direction: ltr !important;
-    margin: 0 !important;
-}
 #form-div {
     margin: 0 auto;
     text-align: center;
