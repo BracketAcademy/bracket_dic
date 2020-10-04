@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.db import IntegrityError
 
 # Create your views here.
 
@@ -67,12 +68,15 @@ def search(req):
 
 def signup(req):
     if req.method=='GET':
-        return render(req, 'mydic/signup.html', {'form': UserCreationForm()})
+        return render(req, 'mydic/signup.html')
     else:
-        if req.POST['password1']==req.POST['password2']:
-            newuser = User.objects.create_user(username=req.POST['username'], password=req.POST['password1'])
-            newuser.email = req.POST['email']
-            newuser.save()
-            return redirect(req, 'mydic/index.html')
-        else:
-            return HttpResponse("SHIT, password doesn't match")
+        try:
+            if req.POST['password1']==req.POST['password2']:
+                newuser = User.objects.create_user(username=req.POST['username'], password=req.POST['password1'])
+                newuser.email = req.POST['email']
+                newuser.save()
+                return redirect('mydic:index.html')
+            else:
+                return render(req, 'mydic/signup.html', context={'wordex': 'duplicate password'})
+        except IntegrityError:
+            return render(req, 'mydic/signup.html', context={'wordex': 'username already exist'})
