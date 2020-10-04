@@ -4,8 +4,8 @@ from .models import *
 from django.utils import timezone
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import login, logout
 from django.db import IntegrityError
 
 # Create your views here.
@@ -75,7 +75,8 @@ def signup(req):
                 newuser = User.objects.create_user(username=req.POST['username'], password=req.POST['password1'])
                 newuser.email = req.POST['email']
                 newuser.save()
-                return redirect('mydic:index.html')
+                login(req, newuser)
+                return redirect('mydic:index')
             else:
                 return render(req, 'mydic/signup.html', context={'wordex': 'duplicate password'})
         except IntegrityError:
