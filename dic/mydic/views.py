@@ -78,13 +78,14 @@ def search(req):
 
 
 def signup(req):
-    if req.method=='GET':
+    if req.method == 'GET':
         return render(req, 'mydic/signup.html')
     else:
         if 'susername' in req.POST:
             try:
-                if req.POST['spassword1']==req.POST['spassword2']:
-                    newuser = User.objects.create_user(username=req.POST['susername'], password=req.POST['spassword1'])
+                if req.POST['spassword1'] == req.POST['spassword2']:
+                    newuser = User.objects.create_user(
+                        username=req.POST['susername'], password=req.POST['spassword1'])
                     newuser.email = req.POST['semail']
                     newuser.save()
                     login(req, newuser)
@@ -94,7 +95,8 @@ def signup(req):
             except IntegrityError:
                 return render(req, 'mydic/signup.html', context={'wordex': 'username already exist'})
         else:
-            user = authenticate(req, username=req.POST['lusername'], password=req.POST['lpassword1'])
+            user = authenticate(
+                req, username=req.POST['lusername'], password=req.POST['lpassword1'])
             if user is None:
                 return render(req, 'mydic/signup.html', context={'wordex': 'username or password is wrong!'})
             else:
