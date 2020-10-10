@@ -55,10 +55,10 @@ def submit(req):
                 if w.word_trans == i['trans']:
                     return render(req, 'mydic/form.html', {'wordex': 'the word is registered!'})
                 else:
-
+                    # TODO: merge translation
                     return render(req, 'mydic/form.html', {'wordex': 'merge trans'})
             else:
-                # merge tpye
+                # TODO: merge tpye
                 return render(req, 'mydic/form.html', {'wordex': 'merge type'})
         else:
             continue
