@@ -13,15 +13,19 @@
     {% block navbar %}
     <ul class="rightnav">
         <li style="float: left;"><a href="{% url 'mydic:index' %}">Bracket Dictionary</a></li>
+        {% if user.is_authenticated %}
+        <li><form action="{% url 'mydic:logoutuser' %}" method="POST">{% csrf_token %}<button type="submit">Logout</button></form></li>
+        <li><a href="#">Hello {{ user }} !</a></li>
+        {% else %}
         <li><a href="{% url 'mydic:signup' %}">Signup</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a>Login</a></li>
+        {% endif %}
     </ul>
     {% endblock %}
     <section class="content">
     {% block content %}
     {% endblock %}
     </section>
-    <h3>{{ user }}</h3>
     {% block footer %}
     <footer class="myfooter">
         All rights reserved. &#169;Bracket 2020

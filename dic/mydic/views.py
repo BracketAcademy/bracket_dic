@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_POST
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 
 from .models import word
@@ -81,14 +81,29 @@ def signup(req):
     if req.method=='GET':
         return render(req, 'mydic/signup.html')
     else:
-        try:
-            if req.POST['password1']==req.POST['password2']:
-                newuser = User.objects.create_user(username=req.POST['username'], password=req.POST['password1'])
-                newuser.email = req.POST['email']
-                newuser.save()
-                login(req, newuser)
-                return redirect('mydic:index')
+        if 'susername' in req.POST:
+            try:
+                if req.POST['spassword1']==req.POST['spassword2']:
+                    newuser = User.objects.create_user(username=req.POST['susername'], password=req.POST['spassword1'])
+                    newuser.email = req.POST['semail']
+                    newuser.save()
+                    login(req, newuser)
+                    return redirect('mydic:index')
+                else:
+                    return render(req, 'mydic/signup.html', context={'wordex': 'duplicate password'})
+            except IntegrityError:
+                return render(req, 'mydic/signup.html', context={'wordex': 'username already exist'})
+        else:
+            user = authenticate(req, username=req.POST['lusername'], password=req.POST['lpassword1'])
+            if user is None:
+                return render(req, 'mydic/signup.html', context={'wordex': 'username or password is wrong!'})
             else:
-                return render(req, 'mydic/signup.html', context={'wordex': 'duplicate password'})
-        except IntegrityError:
-            return render(req, 'mydic/signup.html', context={'wordex': 'username already exist'})
+                login(req, user)
+                return redirect('mydic:index')
+
+
+@require_POST
+def logoutuser(req):
+    if req.method == 'POST':
+        logout(req)
+        return redirect('mydic:index')

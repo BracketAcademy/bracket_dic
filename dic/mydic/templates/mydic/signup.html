@@ -27,17 +27,26 @@
 {% block content %}
 <h1>Signup</h1>
 <div>
-<form method="POST">
+<form id="singupform" method="POST">
     {% csrf_token %}
     <label for="username">Username: </label><br>
-    <input type="text" id="username" name="username" value=""><br><br>
+    <input type="text" id="susername" name="susername" value=""><br><br>
     <label for="email">Email: </label><br>
-    <input type="text" id="Email" name="email" value=""><br><br>
+    <input type="text" id="sEmail" name="semail" value=""><br><br>
     <label for="Password">Password: </label><br>
-    <input type="password" id="password1" name="password1" value=""><br><br>
+    <input type="password" id="spassword1" name="spassword1" value=""><br><br>
     <label for="PasswordConfirm">Password Confirmation: </label><br>
-    <input type="password" id="password2" name="password2" value=""><br><br>
-    <input id="sub" type="submit" value="Submit">
+    <input type="password" id="spassword2" name="spassword2" value=""><br><br>
+    <input id="ssub" type="submit" value="Submit">
+</form><br>
+<h1>Login</h1>
+<form id="loginform" method="POST">
+    {% csrf_token %}
+    <label for="username">Username: </label><br>
+    <input type="text" id="lusername" name="lusername" value=""><br><br>
+    <label for="Password">Password: </label><br>
+    <input type="password" id="lpassword1" name="lpassword1" value=""><br><br>
+    <input id="lsub" type="submit" value="Submit">
 </form>
 {% if wordex %}
 <p style="color: red;">{{wordex}}</p>
