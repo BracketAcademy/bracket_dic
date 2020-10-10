@@ -77,7 +77,6 @@ def search(req):
     return render(req, 'mydic/search.html', context={'searchtxt': searchtxt})
 
 
-@require_POST
 def signup(req):
     if req.method=='GET':
         return render(req, 'mydic/signup.html')
