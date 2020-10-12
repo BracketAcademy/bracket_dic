@@ -17,8 +17,7 @@
         <li><form action="{% url 'mydic:logoutuser' %}" method="POST">{% csrf_token %}<button type="submit">Logout</button></form></li>
         <li><a href="#">Hello {{ user }} !</a></li>
         {% else %}
-        <li><a href="{% url 'mydic:signup' %}">Signup</a></li>
-        <li><a>Login</a></li>
+        <li><a href="{% url 'mydic:signup' %}">Signup / Login</a></li>
         {% endif %}
     </ul>
     {% endblock %}

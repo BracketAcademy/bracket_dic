@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     padding: 0;
     direction: ltr;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: cursive;
 }
 .rightnav {
     list-style-type: none;
@@ -29,7 +29,6 @@ body, html {
     border: none;
     border-radius: 0;
     font: inherit;
-    height: 46px;
     padding: 14px 16px;
     display: block;
     color: white;
@@ -49,7 +48,6 @@ body, html {
     margin-top: 20px;
 }
 .content {
-    margin: 0 !important; padding: 0 !important;
+    margin: 0; padding: 0;
     min-height: 100%;
-    margin: -28px;
 }

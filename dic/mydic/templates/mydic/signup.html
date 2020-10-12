@@ -2,21 +2,33 @@
 {% block title %}Signup{% endblock %}
 {% block style %}
 <style>
+    .content {
+        padding: 0;
+        min-height: 100%;
+        margin: 0 auto;
+        width: 500px;
+    }
     h1 {
         display: table;
         margin: 0 auto;
         margin-top: 30px;
         margin-bottom: 20px;
     }
-    div {
-        width: 500px;
-        margin: 0px auto;
+    .logsign {
+        display: inline;
+        margin: 0 20px;
+    }
+    #log {
+        float: right;
+    }
+    #sign {
+        float: left;
     }
     form {
         margin: 0 auto;
         display: table;
     }
-    #sub {
+    #ssub, #lsub {
         margin-top: 10px;
         width: 100%;
         height: 30px;
@@ -25,8 +37,8 @@
 </style>
 {% endblock %}
 {% block content %}
+<div class="logsign" id="sign">
 <h1>Signup</h1>
-<div>
 <form id="singupform" method="POST">
     {% csrf_token %}
     <label for="username">Username: </label><br>
@@ -38,7 +50,9 @@
     <label for="PasswordConfirm">Password Confirmation: </label><br>
     <input type="password" id="spassword2" name="spassword2" value=""><br><br>
     <input id="ssub" type="submit" value="Submit">
-</form><br>
+</form>
+</div>
+<div class="logsign" id="log">
 <h1>Login</h1>
 <form id="loginform" method="POST">
     {% csrf_token %}
@@ -48,8 +62,8 @@
     <input type="password" id="lpassword1" name="lpassword1" value=""><br><br>
     <input id="lsub" type="submit" value="Submit">
 </form>
+</div>
 {% if wordex %}
 <p style="color: red;">{{wordex}}</p>
 {% endif %}
-</div>
 {% endblock %}
