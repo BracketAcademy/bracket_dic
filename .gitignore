@@ -4,3 +4,4 @@
 __pycache__/
 .vscode
 *.orig
+/dic/dic/local_settings.py
