@@ -17,7 +17,7 @@ class word(models.Model):
         max_length=200, verbose_name="Translation", null=False, blank=False)
     word_date = models.DateTimeField("Date Added")
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def recent(self):
         return timezone.now() - timedelta(hours=12) <= self.word_date <= timezone.now()

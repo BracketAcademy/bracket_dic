@@ -25,7 +25,11 @@ def detail(req, w_id):
 
 
 def form(req, wordex=''):
-    return render(req, 'mydic/form.html', {'wordex': wordex})
+    print(f'------{req.user}------')
+    if req.user.is_authenticated:
+        return render(req, 'mydic/form.html', {'wordex': wordex})
+    else:
+        return redirect('mydic:signup')
 
 
 @require_POST
@@ -63,6 +67,7 @@ def submit(req):
         else:
             continue
 
+    w.user = req.user
     w.save()
     return redirect('mydic:index')
 
