@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'qlvsg507exvltphpme1wq0kdy8k#zt(t5$0@87hld6%=3z2f@5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bracket.pythonanywhere.com']
 
 
 # Application definition
@@ -77,11 +77,10 @@ WSGI_APPLICATION = 'dic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_mydic',
-        'USER': 'backend',
-        'PASSWORD': '27013004',
-        'HOST': '',
-        'PORT': '',
+        'NAME': 'bracket$django_mydic',
+        'USER': 'bracket',
+        'PASSWORD': 'MohammadHadi123',
+        'HOST': 'bracket.mysql.pythonanywhere-services.com',
         'OPIONS': {
             'init_command': "SET sql_mode = 'STRICT_TRANS_TABLES'",
         }
@@ -126,3 +125,4 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
