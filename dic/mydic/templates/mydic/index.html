@@ -8,7 +8,7 @@
 
 {% block content %}
 <h1 class="p-2 text-center mb-3">Words are HERE!</h1>
-<a class="p-2 text-center btn btn-success shadow" id='form' href="{% url 'mydic:form' %}"><h4>Add word!</h4></a>
+<a class="p-2 text-center btn btn-success shadow pr-5" id='form' href="{% url 'mydic:form' %}"><h4>Add word!</h4></a>
 <ul class="allwords p-2 text-center list-group">
     {% for w in word %}
     <li class="shadow list-group-item" style="padding: 0; border:none;">
