@@ -6,8 +6,6 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     {% load static %}
-    <!--<link rel="stylesheet" type="text/css" href="{% static 'mydic/css/base.css' %}">-->
-    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <style>
         body, html {
@@ -27,7 +25,7 @@
         <a class="navbar-brand text-body text-dark" href="{% url 'mydic:index' %}"><h4>Bracket Dictionary</h4></a>
         <ul class="navbar-nav mr-auto">
             <li class="active nav-item"><a class="nav-link" href="{% url 'mydic:form' %}">Add word</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'mydic:about' %}">About</a></li>
             <form class="form-inline input-group-sm" id="search" action="{% url 'mydic:search' %}" method="POST" style="margin-left: 25px;">
                 {% csrf_token %}
                 <input class="form-control" type="text" id="searchbar" name="searchtxt" style="border-top-right-radius: 0; border-bottom-right-radius: 0;" placeholder="Search...">

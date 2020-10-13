@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.models import User
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 
@@ -13,17 +13,19 @@ from .models import word
 
 # Create your views here.
 
-
+@require_GET
 def index(req):
     w = word.objects.order_by('word_text')
     return render(req, 'mydic/index.html', context={'word': w})
 
 
+@require_GET
 def detail(req, w_id):
     w = get_object_or_404(word, id=w_id)
     return render(req, 'mydic/detail.html', {'w': w})
 
 
+@require_GET
 def form(req, wordex=''):
     print(f'------{req.user}------')
     if req.user.is_authenticated:
@@ -114,3 +116,8 @@ def logoutuser(req):
     if req.method == 'POST':
         logout(req)
         return redirect('mydic:index')
+
+
+@require_GET
+def aboutus(req):
+    return render(req, 'mydic/about.html')
