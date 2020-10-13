@@ -5,7 +5,7 @@ from .models import *
 
 
 class wordAdmin(admin.ModelAdmin):
-    list_display = ('word_text', 'word_type', 'word_trans', 'recent')
+    list_display = ('word_text', 'word_type', 'word_trans', 'recent', 'user')
     list_filter = ['word_date']
     search_fields = ['word_text', 'word_trans']
 
