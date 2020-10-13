@@ -20,9 +20,9 @@
                                                 class="btn btn-outline-info d-flex justify-content-between rounded-0" style="padding: 12px 20px; border-bottom: 0;"
                                                 {% endif %}
         >
-            <span class="wordn p-2">{{ forloop.counter }}</span>
+            <span class="wordn p-2" style="width: 35px !important;">{{ forloop.counter }}</span>
             <h5 class="p-2" style="text-transform:capitalize;">{{ w.word_text }} </h5>
-            <span class="p-2">{{ w.word_type }}</span>
+            <span class="p-2" style="width: 85px !important;">{{ w.word_type }}</span>
         </a>
     </li>
     {% endfor %}
