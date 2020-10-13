@@ -1,0 +1,4 @@
+[cli]
+bears = PEP8Bear,PyUnusedCodeBear
+files = **/*.py
+ignore = dic/__pycache__/**, mydic/__pycache__/**, mydic/migrations/**
