@@ -5,19 +5,26 @@
     <title>{% block title %}My Site Title{% endblock %}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'mydic/css/base.css' %}">
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'mydic/css/base.css' %}">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     {% block style %}
     {% endblock %}
 </head>
 <body>
     {% block navbar %}
-    <ul class="rightnav">
-        <li style="float: left;"><a href="{% url 'mydic:index' %}">Bracket Dictionary</a></li>
-        <li><a href="{% url 'mydic:signup' %}">Signup</a></li>
-        <li><a href="#">Login</a></li>
-    </ul>
+    <nav class="navbar navbar-inverse bg-dark text-white">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'mydic:index' %}">Bracket Dictionary</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'mydic:signup' %}">Signup</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </div>
+    </nav>
     {% endblock %}
-    <section class="content">
+    <section class="content container-sm pt-3 bg-primary text-white">
     {% block content %}
     {% endblock %}
     </section>
