@@ -25,17 +25,22 @@
 </style>-->
 {% endblock %}
 {% block content %}
-<h1>Add word</h1>
-<div>
-<form action="{% url 'mydic:submit' %}" method="POST">
+<div class="p-2 text-center">
+<h1 class="text-center">Add word</h1>
+<form class="form-group" action="{% url 'mydic:submit' %}" method="POST">
     {% csrf_token %}
-    <label for="word">Word: </label><br>
-    <input type="text" id="word_text" name="nword" value=""><br><br>
-    <label for="type">Type: </label><br>
-    <input type="text" id="word_type" name="ntype" value=""><br><br>
-    <label for="trans">Translation: </label><br>
-    <input type="text" id="word_trans" name="ntrans" value=""><br><br>
-    <input id="sub" type="submit" value="Submit">
+    <label for="word">Word: </label>
+    <input class="form-control text-center" placeholder="Word Text" type="text" id="word_text" name="nword" value=""><br>
+    <label for="type">Type: </label>
+    <select name="ntype" class="form-control text-center">
+        <option class="text-center" value="noun">noun</option>
+        <option class="text-center" value="verb">verb</option>
+        <option class="text-center" value="adjective">adjective</option>
+        <option class="text-center" value="adverb">adverb</option>
+    </select><br>
+    <label for="trans">Translation: </label>
+    <input class="form-control text-center" placeholder="Word Translation" type="text" id="word_trans" name="ntrans" value=""><br>
+    <input class="btn btn-success form-control" id="sub" type="submit" value="Add Word">
 </form>
 {% if wordex %}
 <p style="color: red;">{{wordex}}</p>

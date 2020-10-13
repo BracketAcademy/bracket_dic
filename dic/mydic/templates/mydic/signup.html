@@ -38,7 +38,8 @@
 </style>-->
 {% endblock %}
 {% block content %}
-<div class="logsign" id="sign">
+<div class="d-flex flex-sm-row flex-wrap justify-content-sm-center">
+<div class="logsign p-5 m-1 text-center border" id="sign">
 <h1>Signup</h1>
 <form id="singupform" method="POST">
     {% csrf_token %}
@@ -53,7 +54,7 @@
     <input id="ssub" type="submit" value="Submit">
 </form>
 </div>
-<div class="logsign" id="log">
+<div class="logsign p-5 m-1  text-center border" id="log">
 <h1>Login</h1>
 <form id="loginform" method="POST">
     {% csrf_token %}

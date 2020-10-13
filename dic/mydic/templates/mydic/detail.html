@@ -26,11 +26,11 @@
 </style>-->
 {% endblock %}
 {% block content %}
-<h1 id="wordname" style = "text-transform:capitalize;">{{ w.word_text }}</h1>
-<ul id="wordpro">
-    <li>{{ w.word_type }}</li>
-    <li>{{ w.word_trans }}</li>
-    <li>{{ w.word_date.year }}/{{ w.word_date.day }}/{{ w.word_date.month }}</li>
-    <li style="text-transform: none;">&#174;{{ w.user }}</li>
+<ul class="p-2 text-center list-group" id="wordpro">
+    <li class="shadow list-group-item active"><h1 style = "text-transform:capitalize;">{{ w.word_text }}</h1></li>
+    <li class="shadow list-group-item">{{ w.word_type }}</li>
+    <li class="shadow list-group-item">{{ w.word_trans }}</li>
+    <li class="shadow list-group-item">{{ w.word_date.year }}/{{ w.word_date.day }}/{{ w.word_date.month }}</li>
+    <li class="shadow list-group-item" style="text-transform: none;">&#174;{{ w.user }}</li>
 </ul>
 {% endblock %}
