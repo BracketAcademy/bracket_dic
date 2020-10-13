@@ -12,14 +12,19 @@
 </head>
 <body>
     {% block navbar %}
-    <nav class="navbar navbar-inverse bg-dark text-white">
+    <nav class="navbar navbar-inverse bg-dark">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="{% url 'mydic:index' %}">Bracket Dictionary</a>
             </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'mydic:index' %}">Home</a></li>
+                <li><a href="{% url 'mydic:form' %}">Add word</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                <li><form action="{% url 'mydic:logoutuser' %}" method="POST">{% csrf_token %}<button type="submit">Logout</button></form></li>
+                <li><form action="{% url 'mydic:logoutuser' %}" method="POST">{% csrf_token %}<button class="btn navbar-btn" type="submit">Logout</button></form></li>
                 <li><a href="#">Hello {{ user }} !</a></li>
                 {% else %}
                 <li><a href="{% url 'mydic:signup' %}">Signup / Login</a></li>
