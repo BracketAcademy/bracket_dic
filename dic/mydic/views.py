@@ -13,6 +13,7 @@ from .models import word
 
 # Create your views here.
 
+
 @require_GET
 def index(req):
     w = word.objects.order_by('word_text')

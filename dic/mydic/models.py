@@ -7,6 +7,7 @@ from datetime import timedelta
 
 # Create your models here.
 
+
 class word(models.Model):
     word_text = models.CharField(
         max_length=50, verbose_name="Word", null=False, blank=False)
