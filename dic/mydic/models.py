@@ -21,7 +21,7 @@ class word(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def recent(self):
-        return timezone.now() - timedelta(hours=18) <= self.word_date <= timezone.now()
+        return timezone.now() - timedelta(hours=22) <= self.word_date <= timezone.now()
     recent.admin_order_field = 'word_date'
     recent.boolean = True
     recent.short_description = 'Published Recently?'
