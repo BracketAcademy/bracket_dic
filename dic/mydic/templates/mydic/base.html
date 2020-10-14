@@ -29,7 +29,8 @@
         <div class="container-sm">
         <a class="navbar-brand text-body" href="{% url 'mydic:index' %}"><img src="{% static 'mydic/logo.png' %}" class="ml-2" alt="Logo" style="display: inline;"><h4 class="text-light" style="display: inline;">لغت‌نامۀ براکت</h4></a>
         <ul class="navbar-nav ml-auto pr-3">
-            <li class="active nav-item"><a class="nav-link" href="{% url 'mydic:form' %}">افزودن کلمه</a></li>
+            <li class="active nav-item"><a class="nav-link" href="{% url 'mydic:list' %}">‌فهرست‌لغات</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'mydic:form' %}">افزودن‌کلمه</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'mydic:about' %}">درباره</a></li>
             <form class="form-inline input-group-sm" id="search" action="{% url 'mydic:search' %}" method="POST" style="margin-right: 25px;">
                 {% csrf_token %}
@@ -50,7 +51,7 @@
         </div>
     </nav>
     {% endblock %}
-    <section class="content container-sm bg-light text-dark d-flex justify-content-sm-center flex-column pt-3 pb-4" style="min-height: 85%;">
+    <section class="content container-sm bg-light text-dark d-flex justify-content-sm-center flex-column pt-3 pb-4" style="min-height: 87%;">
     {% block content %}
     {% endblock %}
     </section>

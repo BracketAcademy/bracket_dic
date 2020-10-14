@@ -1,15 +1,13 @@
 {% extends "mydic/base.html" %}
 
-{% block title %}لغت‌نامه{% endblock %}
+{% block title %}فهرست‌لغات{% endblock %}
 
 {% block style %}
 {% load static %}
 {% endblock %}
 
 {% block content %}
-{% if word %}
-<h1 class="p-2 text-center mb-3 pr-4">داغ‌ترین کلمات!</h1>
-<a class="p-2 text-center btn btn-success shadow pr-4" id='form' href="{% url 'mydic:form' %}"><h4>کلمه جدید؟</h4></a>
+<h1 class="p-2 text-center mb-3 pr-5">لغت‌نامۀ براکت</h1>
 <ul class="allwords p-0 m-2 text-center list-group">
     {% for w in word %}
     <li class="shadow list-group-item" style="padding: 0; border:none; direction: ltr;">
@@ -21,17 +19,11 @@
                                                 class="btn btn-outline-info d-flex justify-content-between rounded-0" style="padding: 12px 20px; border-bottom: 0;"
                                                 {% endif %}
                                                 >
-            <span class="wordn p-2 align-bottom" style="width: 80px !important; direction: rtl; font-size: 11px; padding-top: 12px !important; padding-left: 0 !important; padding-bottom: 0 !important;">{{ w.deltadate }}</span>
+            <span class="wordn p-2 align-bottom" style="width: 35px !important; direction: rtl; padding-left: 0 !important; padding-bottom: 0 !important;">{{ forloop.counter }}</span>
             <h5 class="p-2" style="text-transform:capitalize;">{{ w.word_text }}</h5>
             <span class="p-2" style="width: 80px !important; padding-right: 0 !important;">{{ w.word_type }}</span>
         </a>
     </li>
     {% endfor %}
 </ul>
-{% else %}
-<h2 class="text-center">بد شد که ،</h1><br>
-<h2 class="text-center">اخیراً کلمه‌ای ثبت نشده 😐</h1>
-<br>
-<a class="p-3 text-center btn btn-success shadow" id='form' href="{% url 'mydic:form' %}"><h2>تا منو داری غم نداری!</h2></a>
-{% endif %}
 {% endblock %}

@@ -5,7 +5,7 @@
 {% block content %}
 <div class="p-2 text-center">
 <h1 class="text-center pb-3">کلمه جدید</h1>
-<form class="form-group" action="{% url 'mydic:submit' %}" method="POST">
+<form class="form-group" method="POST">
     {% csrf_token %}
     <label for="word">کلمه: </label>
     <input class="form-control text-center" placeholder="Word Text" type="text" id="word_text" name="nword" value=""><br>

@@ -18,8 +18,7 @@ from .models import word
 @require_GET
 def index(req):
     w = word.objects.order_by('-word_date')
-    w = list(w)
-    wil = list()
+    wil = []
     for i in w:
         if i.recent():
             wil.append(i)
@@ -33,52 +32,44 @@ def detail(req, w_id):
     return render(req, 'mydic/detail.html', {'w': w})
 
 
-@require_GET
-def form(req, wordex=''):
-    if req.user.is_authenticated:
-        return render(req, 'mydic/form.html', {'wordex': wordex})
+def form(req, wordex=None):
+    if req.method=='GET':
+        if req.user.is_authenticated:
+            return render(req, 'mydic/form.html', {'wordex': wordex})
+        else:
+            return redirect('mydic:signup')
     else:
-        return redirect('mydic:signup')
-
-
-@require_POST
-def submit(req):
-    try:
         nw = req.POST['nword'].lower()
         ntype = req.POST['ntype'].lower()
         ntrans = req.POST['ntrans'].lower()
-    except MultiValueDictKeyError:
-        nw = req.GET['nword'].lower()
-        ntype = req.GET['ntype'].lower()
-        ntrans = req.GET['ntrans'].lower()
-    ndate = timezone.now()
+        ndate = timezone.now()
 
-    w = word(word_text=nw, word_type=ntype, word_trans=ntrans, word_date=ndate)
+        w = word(word_text=nw, word_type=ntype, word_trans=ntrans, word_date=ndate)
+        w.user = req.user
 
-    aword = list()
-    for i in word.objects.all():
-        aword.append({
-            'text': i.word_text,
-            'type': i.word_type,
-            'trans': i.word_trans
-        })
-    for i in aword:
-        if w.word_text == i['text']:
-            if w.word_type == i['type']:
-                if w.word_trans == i['trans']:
-                    return render(req, 'mydic/form.html', {'wordex': 'این کلمه قبلا اضافه شده‌است!'})
+        aword = []
+        for i in word.objects.all():
+            aword.append({
+                'text': i.word_text,
+                'type': i.word_type,
+                'trans': i.word_trans
+            })
+        for i in aword:
+            if w.word_text == i['text']:
+                if w.word_type == i['type']:
+                    if w.word_trans == i['trans']:
+                        return render(req, 'mydic/form.html', {'wordex': 'این کلمه قبلا اضافه شده‌است!'})
+                    else:
+                        # TODO: merge translation
+                        return render(req, 'mydic/form.html', {'wordex': 'این کلمه قبلا اضافه شده‌است!'})
                 else:
-                    # TODO: merge translation
+                    # TODO: merge tpye
                     return render(req, 'mydic/form.html', {'wordex': 'این کلمه قبلا اضافه شده‌است!'})
             else:
-                # TODO: merge tpye
-                return render(req, 'mydic/form.html', {'wordex': 'این کلمه قبلا اضافه شده‌است!'})
-        else:
-            continue
+                continue
 
-    w.user = req.user
-    w.save()
-    return redirect('mydic:index')
+        w.save()
+        return redirect('mydic:index')
 
 
 @require_POST
@@ -129,3 +120,8 @@ def logoutuser(req):
 @require_GET
 def aboutus(req):
     return render(req, 'mydic/about.html')
+
+@require_GET
+def list(req):
+    allwords = word.objects.order_by('word_text')
+    return render(req, 'mydic/list.html', context={'word': allwords})
