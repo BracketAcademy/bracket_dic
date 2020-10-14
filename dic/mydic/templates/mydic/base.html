@@ -27,7 +27,7 @@
     {% block navbar %}
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary justify-content-center">
         <div class="container-sm">
-        <a class="navbar-brand text-body" href="{% url 'mydic:index' %}"><h4 class="text-light">لغت‌نامۀ براکت</h4></a>
+        <a class="navbar-brand text-body" href="{% url 'mydic:index' %}"><img src="{% static 'mydic/logo.png' %}" class="ml-2" alt="Logo" style="display: inline;"><h4 class="text-light" style="display: inline;">لغت‌نامۀ براکت</h4></a>
         <ul class="navbar-nav ml-auto pr-3">
             <li class="active nav-item"><a class="nav-link" href="{% url 'mydic:form' %}">افزودن کلمه</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'mydic:about' %}">درباره</a></li>
