@@ -60,13 +60,13 @@ def submit(req):
         if w.word_text == i['text']:
             if w.word_type == i['type']:
                 if w.word_trans == i['trans']:
-                    return render(req, 'mydic/form.html', {'wordex': 'the word is registered!'})
+                    return render(req, 'mydic/form.html', {'wordex': 'این کلمه قبلا اضافه شده‌است!'})
                 else:
                     # TODO: merge translation
-                    return render(req, 'mydic/form.html', {'wordex': 'merge trans'})
+                    return render(req, 'mydic/form.html', {'wordex': 'این کلمه قبلا اضافه شده‌است!'})
             else:
                 # TODO: merge tpye
-                return render(req, 'mydic/form.html', {'wordex': 'merge type'})
+                return render(req, 'mydic/form.html', {'wordex': 'این کلمه قبلا اضافه شده‌است!'})
         else:
             continue
 
@@ -94,19 +94,20 @@ def signup(req):
                 if req.POST['spassword1'] == req.POST['spassword2']:
                     newuser = User.objects.create_user(
                         username=req.POST['susername'], password=req.POST['spassword1'])
-                    newuser.email = req.POST['semail']
+                    newuser.first_name = req.POST['sfirstname']
+                    newuser.last_name = req.POST['slastname']
                     newuser.save()
                     login(req, newuser)
                     return redirect('mydic:index')
                 else:
-                    return render(req, 'mydic/signup.html', context={'wordex': 'duplicate password'})
+                    return render(req, 'mydic/signup.html', context={'wordex': 'رمزهای عبور همخوانی ندارد!'})
             except IntegrityError:
-                return render(req, 'mydic/signup.html', context={'wordex': 'username already exist'})
+                return render(req, 'mydic/signup.html', context={'wordex': 'فردی با این نام کاربری وجود دارد!'})
         else:
             user = authenticate(
                 req, username=req.POST['lusername'], password=req.POST['lpassword1'])
             if user is None:
-                return render(req, 'mydic/signup.html', context={'wordex': 'username or password is wrong!'})
+                return render(req, 'mydic/signup.html', context={'wordex': 'نام کاربری یا رمز عبور نادرست است!'})
             else:
                 login(req, user)
                 return redirect('mydic:index')

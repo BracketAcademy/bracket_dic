@@ -1,22 +1,22 @@
 {% extends 'mydic/base.html' %}
-{% block title %}Add Word{% endblock %}
+{% block title %}کلمه جدید{% endblock %}
 {% block style %}
 {% endblock %}
 {% block content %}
 <div class="p-2 text-center">
-<h1 class="text-center">Add word</h1>
+<h1 class="text-center pb-3">کلمه جدید</h1>
 <form class="form-group" action="{% url 'mydic:submit' %}" method="POST">
     {% csrf_token %}
-    <label for="word">Word: </label>
+    <label for="word">کلمه: </label>
     <input class="form-control text-center" placeholder="Word Text" type="text" id="word_text" name="nword" value=""><br>
-    <label for="type">Type: </label>
+    <label for="type">نوع: </label>
     <select name="ntype" class="form-control text-center">
         <option class="text-center" value="noun">noun</option>
         <option class="text-center" value="verb">verb</option>
         <option class="text-center" value="adjective">adjective</option>
         <option class="text-center" value="adverb">adverb</option>
     </select><br>
-    <label for="trans">Translation: </label>
+    <label for="trans">ترجمه (فارسی): </label>
     <input class="form-control text-center" placeholder="Word Translation" type="text" id="word_trans" name="ntrans" value=""><br>
     <input class="btn btn-success form-control" id="sub" type="submit" value="Add Word">
 </form>

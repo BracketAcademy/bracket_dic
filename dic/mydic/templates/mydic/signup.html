@@ -5,29 +5,31 @@
 {% block content %}
 <div class="d-flex flex-sm-row flex-wrap justify-content-sm-center">
 <div class="logsign p-5 m-1 text-center border" id="sign">
-<h1>Signup</h1>
+<h1 class="pb-2">ثبت‌نام</h1>
 <form id="singupform" method="POST">
     {% csrf_token %}
-    <label for="username">Username: </label><br>
+    <label for="username">نام کاربری: </label><br>
     <input type="text" id="susername" name="susername" value=""><br><br>
-    <label for="email">Email: </label><br>
-    <input type="text" id="sEmail" name="semail" value=""><br><br>
-    <label for="Password">Password: </label><br>
+    <label for="name">نام: </label><br>
+    <input type="text" id="sname" name="sfirstname" value=""><br><br>
+    <label for="lastname">نام خانوادگی: </label><br>
+    <input type="text" id="slastname" name="slastname" value=""><br><br>
+    <label for="Password">رمز عبور: </label><br>
     <input type="password" id="spassword1" name="spassword1" value=""><br><br>
-    <label for="PasswordConfirm">Password Confirmation: </label><br>
+    <label for="PasswordConfirm">تایید رمز: </label><br>
     <input type="password" id="spassword2" name="spassword2" value=""><br><br>
-    <input id="ssub" type="submit" value="Submit">
+    <input id="ssub" type="submit" value="ثبت‌نام">
 </form>
 </div>
 <div class="logsign p-5 m-1  text-center border" id="log">
-<h1>Login</h1>
+<h1 class="pb-2">ورود</h1>
 <form id="loginform" method="POST">
     {% csrf_token %}
-    <label for="username">Username: </label><br>
+    <label for="username">نام کاربری: </label><br>
     <input type="text" id="lusername" name="lusername" value=""><br><br>
-    <label for="Password">Password: </label><br>
+    <label for="Password">رمز عبور: </label><br>
     <input type="password" id="lpassword1" name="lpassword1" value=""><br><br>
-    <input id="lsub" type="submit" value="Submit">
+    <input id="lsub" type="submit" value="ورود">
 </form>
 </div>
 {% if wordex %}

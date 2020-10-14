@@ -1,13 +1,13 @@
 {% extends 'mydic/base.html' %}
-{% block title %}Detail: {{ w.word_text }}{% endblock %}
+{% block title %}{{ w.word_text }}{% endblock %}
 {% block style %}
 {% endblock %}
 {% block content %}
 <ul class="p-2 text-center list-group" id="wordpro">
-    <li class="shadow list-group-item active"><h1 style = "text-transform:capitalize;">{{ w.word_text }}</h1></li>
+    <li class="shadow list-group-item active"><h1 style = "text-transform:capitalize; margin: 0 !important;">{{ w.word_text }}</h1></li>
     <li class="shadow list-group-item">{{ w.word_type }}</li>
     <li class="shadow list-group-item">{{ w.word_trans }}</li>
     <li class="shadow list-group-item">{{ w.word_date.year }}/{{ w.word_date.day }}/{{ w.word_date.month }}</li>
-    <li class="shadow list-group-item" style="text-transform: none;">&#174;{{ w.user }}</li>
+    <li class="shadow list-group-item" style="text-transform: none; direction: ltr;"><b>@</b>{{ w.user }}</li>
 </ul>
 {% endblock %}

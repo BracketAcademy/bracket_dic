@@ -1,17 +1,17 @@
 {% extends "mydic/base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}لغت‌نامه{% endblock %}
 
 {% block style %}
 {% load static %}
 {% endblock %}
 
 {% block content %}
-<h1 class="p-2 text-center mb-3">Words are HERE!</h1>
-<a class="p-2 text-center btn btn-success shadow pr-5" id='form' href="{% url 'mydic:form' %}"><h4>Add word!</h4></a>
+<h1 class="p-2 text-center mb-3 pr-4">داغ‌ترین کلمات!</h1>
+<a class="p-2 text-center btn btn-success shadow pr-5" id='form' href="{% url 'mydic:form' %}"><h4>کلمه جدید؟</h4></a>
 <ul class="allwords p-2 text-center list-group">
     {% for w in word %}
-    <li class="shadow list-group-item" style="padding: 0; border:none;">
+    <li class="shadow list-group-item" style="padding: 0; border:none; direction: ltr;">
         <a href="{% url 'mydic:detail' w.id %}" {% if forloop.counter == 1 %}
                                                 class="btn btn-outline-info d-flex justify-content-between rounded-top" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0; padding: 12px 20px; border-bottom: 0;"
                                                 {% elif forloop.last %}

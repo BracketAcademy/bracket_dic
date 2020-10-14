@@ -2,10 +2,11 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <title>{% block title %}My Site Title{% endblock %}</title>
+    <title>{% block title %}لغت‌نامه{% endblock %}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     {% load static %}
+    <link rel="stylesheet" type="text/html" href="{% static 'mydic/iransans/css/style.css' %">
     <link rel="icon" href="{% static 'favicon.ico' %}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <style>
@@ -13,7 +14,11 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            direction: ltr;
+            direction: rtl;
+            font-family: IRANSans !important;
+        }
+        h1,h2,h3,h4,h5,h6 {
+            margin: 0;
         }
     </style>
     {% block style %}
@@ -23,24 +28,24 @@
     {% block navbar %}
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary justify-content-center">
         <div class="container-sm">
-        <a class="navbar-brand text-body" href="{% url 'mydic:index' %}"><h4 class="text-light">Bracket Dictionary</h4></a>
-        <ul class="navbar-nav mr-auto">
-            <li class="active nav-item"><a class="nav-link" href="{% url 'mydic:form' %}">Add word</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'mydic:about' %}">About</a></li>
-            <form class="form-inline input-group-sm" id="search" action="{% url 'mydic:search' %}" method="POST" style="margin-left: 25px;">
+        <a class="navbar-brand text-body" href="{% url 'mydic:index' %}"><h4 class="text-light">لغت‌نامۀ براکت</h4></a>
+        <ul class="navbar-nav ml-auto pr-3">
+            <li class="active nav-item"><a class="nav-link" href="{% url 'mydic:form' %}">افزودن کلمه</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'mydic:about' %}">درباره</a></li>
+            <form class="form-inline input-group-sm" id="search" action="{% url 'mydic:search' %}" method="POST" style="margin-right: 25px;">
                 {% csrf_token %}
-                <input class="form-control" type="text" id="searchbar" name="searchtxt" style="border-top-right-radius: 0; border-bottom-right-radius: 0;" placeholder="Search...">
+                <input class="form-control" type="text" id="searchbar" name="searchtxt" style="border-top-left-radius: 0; border-bottom-left-radius: 0;" placeholder="جستجو...">
                 <div class="input-group-append">
-                    <button class="btn btn-success" type="submit" id="searchsub" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                    <button class="btn btn-success" type="submit" id="searchsub" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
                     <i class="fas fa-search" aria-hidden="true"></i></button></div>
             </form>
         </ul>
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav mr-auto">
             {% if user.is_authenticated %}
-            <li class="nav-item active"><a class="nav-link" href="">Hello {{ user }} !</a></li>
-            <li class="nav-item"><form class="form-inline" action="{% url 'mydic:logoutuser' %}" method="POST">{% csrf_token %}<button class="btn navbar-btn nav-link" type="submit">Logout</button></form></li>
+            <li class="nav-item active"><a class="nav-link" href="">سلام {{ user }} !</a></li>
+            <li class="nav-item"><form class="form-inline" action="{% url 'mydic:logoutuser' %}" method="POST">{% csrf_token %}<button class="btn navbar-btn nav-link" type="submit">خروج</button></form></li>
             {% else %}
-            <li class="nav-item active"><a class="nav-link" href="{% url 'mydic:signup' %}">Signup / Login</a></li>
+            <li class="nav-item active"><a class="nav-link" href="{% url 'mydic:signup' %}">ثبت‌نام / ورود</a></li>
             {% endif %}
         </ul>
         </div>
