@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.http import require_POST, require_GET
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from django.db.models import QuerySet
 
 from .models import word
 
@@ -16,8 +17,14 @@ from .models import word
 
 @require_GET
 def index(req):
-    w = word.objects.order_by('word_text')
-    return render(req, 'mydic/index.html', context={'word': w})
+    w = word.objects.order_by('-word_date')
+    w = list(w)
+    wil = list()
+    for i in w:
+        if i.recent():
+            wil.append(i)
+    del w
+    return render(req, 'mydic/index.html', context={'word': wil})
 
 
 @require_GET
@@ -28,7 +35,6 @@ def detail(req, w_id):
 
 @require_GET
 def form(req, wordex=''):
-    print(f'------{req.user}------')
     if req.user.is_authenticated:
         return render(req, 'mydic/form.html', {'wordex': wordex})
     else:
